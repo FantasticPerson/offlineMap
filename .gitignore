@@ -7,3 +7,5 @@ libs/
 .DS_Store
 .cache/
 tiles/
+win7-win32-ia32/resources/app/src/node_module/
+win7-win32-ia32/resources/app/src/src/download/
