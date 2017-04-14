@@ -1,0 +1,9 @@
+node_modules/
+build/
+dist/
+.idea/
+npm-debug.log
+libs/
+.DS_Store
+.cache/
+tiles/

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <title>百度地图离线API V2.0</title>
+	<style type="text/css">
+  body, html,#map_demo, #tab, #mapfrm {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+  #menu{height:100%;overflow-y:auto}
+  td{font-size:14px}
+  h4{margin:0;}
+  #map_demo1,#map_demo2{height: 50%}
+  </style>
+  <script type="text/javascript" src="../../baidumapv2/baidumap_offline_v2_load.js"></script>
+  <script type="text/javascript" src="../jquery.js"></script>
+  <script type="text/javascript" src="../layer/layer.js"></script>
+  
+  <link rel="stylesheet" type="text/css" href="../../baidumapv2/css/baidu_map_v2.css"/>
+  <script type="text/javascript" src="../stylelist.js"></script>
+</head>
+<body>
+<label>选择主题</label>
+<select id="stylelist" onchange="changeMapStyle(this.value)"></select>
+<div id="map_demo">1</div>
+</body>
+</html>
+<script type="text/javascript">  
+// 百度地图API功能
+	var map = new BMap.Map("map_demo");
+	var point = new BMap.Point(116.418261, 39.921984);
+	map.centerAndZoom(point, 8);
+	map.enableScrollWheelZoom();                        //启用滚轮放大缩小
+  
+//初始化模板选择的下拉框
+	var sel = document.getElementById('stylelist');
+	for(var key in mapstyles){
+		var style = mapstyles[key];
+		var item = new  Option(style.title,key);
+		sel.options.add(item);
+	}
+	window.map = map;
+	var point = new BMap.Point(116.404, 39.915);
+
+	map.addControl(new BMap.NavigationControl());               // 添加平移缩放控件
+	map.addControl(new BMap.ScaleControl());                    // 添加比例尺控件
+	map.addControl(new BMap.OverviewMapControl());              //添加缩略地图控件
+	map.enableScrollWheelZoom();                            //启用滚轮放大缩小
+	map.addControl(new BMap.MapTypeControl());          //添加地图类型控件
+	map.disable3DBuilding();
+	//map.centerAndZoom(point, 14); 
+
+	//代码使用如下,即可. 模板页可以查看http://developer.baidu.com/map/custom/list.htm      
+	//map.setMapStyle({style:'midnight'});
+
+	changeMapStyle('midnight')
+	sel.value = 'midnight';
+
+	function changeMapStyle(style){
+		map.setMapStyle({style:style});
+		$('#desc').html(mapstyles[style].desc);
+	}
+</script>
